@@ -1,0 +1,83 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "duckdb-eurostat-mcp"
+version = "0.1.0"
+description = "MCP server for querying Eurostat data using DuckDB extension with natural language to SQL translation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Your Name", email = "your.email@example.com" }
+]
+keywords = ["mcp", "eurostat", "duckdb", "statistics", "data", "sql"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "mcp>=0.9.0",
+    "duckdb>=1.0.0",
+]
+
+[project.optional-dependencies]
+anthropic = [
+    "anthropic>=0.18.0",
+]
+openai = [
+    "openai>=1.0.0",
+]
+azure = [
+    "openai>=1.0.0",
+]
+ollama = [
+    "openai>=1.0.0",
+]
+all-providers = [
+    "anthropic>=0.18.0",
+    "openai>=1.0.0",
+]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "anthropic>=0.18.0",
+    "openai>=1.0.0",
+]
+
+[project.scripts]
+duckdb-eurostat-mcp = "duckdb_eurostat_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/duckdb_eurostat_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-v --cov=duckdb_eurostat_mcp --cov-report=term-missing"
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
