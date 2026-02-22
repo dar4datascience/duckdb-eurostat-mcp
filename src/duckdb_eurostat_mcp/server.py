@@ -241,7 +241,13 @@ class EurostatMCPServer:
         return [TextContent(type="text", text=f"**Available Providers:**\n{result}")]
 
 
-async def main() -> None:
+def main() -> None:
+    """Entry point for the MCP server."""
+    asyncio.run(_run_server())
+
+
+async def _run_server() -> None:
+    """Run the MCP server."""
     logger.info("Starting DuckDB Eurostat MCP Server")
     server_instance = EurostatMCPServer()
     
@@ -253,9 +259,5 @@ async def main() -> None:
         )
 
 
-def run() -> None:
-    asyncio.run(main())
-
-
 if __name__ == "__main__":
-    run()
+    main()

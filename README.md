@@ -39,7 +39,7 @@ Unlike other Eurostat MCP implementations that use direct SDMX API calls, this s
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/duckdb-eurostat-mcp.git
+git clone https://github.com/dar4datascience/duckdb-eurostat-mcp.git
 cd duckdb-eurostat-mcp
 
 # Create virtual environment
